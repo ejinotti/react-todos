@@ -3,6 +3,10 @@
   "version": "1.0.0",
   "description": "",
   "main": "index.js",
+  "repository": {
+    "type": "git",
+    "url": "git@github.com:ejinotti/react-todos.git"
+  },
   "scripts": {
     "test": "echo \"Error: no test specified\" && exit 1"
   },
@@ -16,6 +20,7 @@
     "bootstrap": "^3.3.6",
     "react": "^0.14.6",
     "react-dom": "^0.14.6",
+    "superagent": "^1.6.1",
     "webpack": "^1.12.10"
   }
 }
