@@ -12,5 +12,32 @@ class Todo(db.Model):
     done = db.Column(db.Boolean)
 
     @classmethod
-    def all(cls):
-        return db.session.query(cls).all()
+    def create(cls, **kwargs):
+        todo = cls(**kwargs)
+        db.session.add(todo)
+        db.session.commit()
+        return todo
+
+    @classmethod
+    def get(cls, id):
+        return cls.query.filter_by(id=id).one()
+
+    def update(self, **kwargs):
+        for (k, v) in kwargs.iteritems():
+            setattr(self, k, v)
+        db.session.commit()
+        return self
+
+    def destroy(self):
+        db.session.delete(self)
+        db.session.commit()
+        return self
+
+    @property
+    def serialize(self):
+        return {
+            'id': self.id,
+            'title': self.title,
+            'body': self.body,
+            'done': self.done,
+        }
