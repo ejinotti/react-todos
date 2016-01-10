@@ -1,9 +1,7 @@
-#!/usr/bin/env python
-
 from flask import Flask
 from flask_sqlalchemy import SQLAlchemy
 
-from routes import add_routes
+from .routes import add_routes
 
 app = Flask(__name__)
 
@@ -14,5 +12,5 @@ db = SQLAlchemy(app)
 
 add_routes(app)
 
-if __name__ == '__main__':
-    app.run(debug=True)
+# NOTE: models are initialized in routes, so must create_all after routes..
+db.create_all()
