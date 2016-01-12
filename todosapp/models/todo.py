@@ -1,4 +1,4 @@
-from todosapp import db
+from .. import db
 
 
 class Todo(db.Model):

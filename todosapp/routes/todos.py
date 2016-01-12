@@ -1,7 +1,7 @@
 from flask import request, Response
 from flask.json import dumps
 
-from todosapp.models.todo import Todo
+from ..models.todo import Todo
 
 
 def add_routes(app):
