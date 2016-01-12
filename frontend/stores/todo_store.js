@@ -2,11 +2,13 @@
 
 var agent = require('superagent');
 
-var _todos, _callbacks;
+var _todos = {};
+var _callbacks = [];
 
 var TodoStore = {
   changed: function () {
-
+    console.log('TodoStore.changed()');
+    _.callback.forEach(function (cb) { cb(); });
   },
   addChangeHandler: function () {
 
@@ -18,16 +20,57 @@ var TodoStore = {
     return _todos;
   },
   fetch: function () {
-    var self = this;
-
     agent
       .get('/api/todos')
-      .end(function (error, result) {
-        if (error) {
-          return console.error(error.message);
+      .end(function (err, result) {
+        if (err) {
+          return console.error(err.message);
         }
-        _todos = result.body;
-        self.changed();
+        result.body.forEach(function (todo) {
+          _todos[todo.id] = todo;
+        });
+        TodoStore.changed();
+      });
+  },
+  create: function (todo) {
+    agent
+      .post('/api/todos')
+      .send(todo)
+      .end(function (err, result) {
+        if (err) {
+          return console.error(err.message);
+        }
+        _todos[result.body.id] = result.body;
+        TodoStore.changed();
+      });
+  },
+  destroy: function (id) {
+    if (!_todos[id]) {
+      return;
+    }
+    agent
+      .del('/api/todos/' + id)
+      .end(function (err, result) {
+        if (err) {
+          return console.error(err.message);
+        }
+        delete _todos[id];
+        TodoStore.changed();
+      });
+  },
+  toggleDone: function (id) {
+    if (!_todos[id]) {
+      return;
+    }
+    agent
+      .patch('/api/todos/' + id)
+      .send({done: !_todos[id].done})
+      .end(function (err, result) {
+        if (err) {
+          return console.error(err.message);
+        }
+        _todos[id] = result.body;
+        TodoStore.changed();
       });
   },
 };
