@@ -8,13 +8,20 @@ var _callbacks = [];
 var TodoStore = {
   changed: function () {
     console.log('TodoStore.changed()');
-    _.callback.forEach(function (cb) { cb(); });
+    _callbacks.forEach(function (cb) { cb(); });
   },
-  addChangeHandler: function () {
-
+  addChangeHandler: function (fn) {
+    _callbacks.push(fn);
   },
-  removeChangeHandler: function () {
+  cbs: function () {
+    return _callbacks;
+  },
+  removeChangeHandler: function (fn) {
+    var idx = _callbacks.indexOf(fn);
 
+    if (idx !== -1) {
+      _callbacks.splice(idx, 1);
+    }
   },
   all: function () {
     return _todos;
