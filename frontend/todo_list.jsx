@@ -2,6 +2,7 @@ var React = require('react');
 
 var TodoStore = require('./stores/todo_store');
 var TodoListItem = require('./todo_list_item');
+var TodoForm = require('./todo_form');
 
 module.exports = React.createClass({
   getInitialState: function () {
@@ -13,7 +14,12 @@ module.exports = React.createClass({
       return <TodoListItem key={id} todo={todos[id]} />;
     });
 
-    return <div>{items}</div>;
+    return (
+      <div>
+        {items}
+        <TodoForm />
+      </div>
+    );
   },
   todosChanged: function () {
     this.setState({todos: TodoStore.all()});
