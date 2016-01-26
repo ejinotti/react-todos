@@ -1,24 +1,24 @@
-from flask import request, Response
-from flask.json import dumps
+from flask import request
 
+from . import json_response
 from ..models.todo import Todo
 
 
 def add_routes(app):
-    app.add_url_rule(
-        '/api/todos', view_func=index, methods=['GET'])
-    app.add_url_rule(
-        '/api/todos', view_func=create, methods=['POST'])
-    app.add_url_rule(
-        '/api/todos/<int:id>', view_func=show, methods=['GET'])
-    app.add_url_rule(
-        '/api/todos/<int:id>', view_func=update, methods=['PATCH'])
-    app.add_url_rule(
-        '/api/todos/<int:id>', view_func=destroy, methods=['DELETE'])
+    app.add_url_rule('/api/todos', endpoint='todos_index', view_func=index,
+                     methods=['GET'])
 
+    app.add_url_rule('/api/todos', endpoint='todos_create', view_func=create,
+                     methods=['POST'])
 
-def json_response(data):
-    return Response(dumps(data), status=200, mimetype='application/json')
+    app.add_url_rule('/api/todos/<int:id>', endpoint='todos_show',
+                     view_func=show, methods=['GET'])
+
+    app.add_url_rule('/api/todos/<int:id>', endpoint='todos_update',
+                     view_func=update, methods=['PATCH'])
+
+    app.add_url_rule('/api/todos/<int:id>', endpoint='todos_destroy',
+                     view_func=destroy, methods=['DELETE'])
 
 
 def index():
