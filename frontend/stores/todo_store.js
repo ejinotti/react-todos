@@ -7,14 +7,10 @@ var _callbacks = [];
 
 var TodoStore = {
   changed: function () {
-    console.log('TodoStore.changed()');
     _callbacks.forEach(function (cb) { cb(); });
   },
   addChangeHandler: function (fn) {
     _callbacks.push(fn);
-  },
-  cbs: function () {
-    return _callbacks;
   },
   removeChangeHandler: function (fn) {
     var idx = _callbacks.indexOf(fn);

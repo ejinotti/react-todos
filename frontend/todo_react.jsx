@@ -1,4 +1,5 @@
 // TodoStore = require('./stores/todo_store');
+// StepStore = require('./stores/step_store');
 var ReactDOM = require('react-dom');
 var React = require('react');
 
