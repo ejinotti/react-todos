@@ -19,11 +19,11 @@ module.exports = React.createClass({
 
     return (
       <div>
-        <div onClick={this.toggleDetail}>
+        <span onClick={this.toggleDetail}>
           {this.props.todo.title}
-        </div>
-        {detail}
-        <DoneButton todo={this.props.todo} />
+          <DoneButton item={this.props.todo} />
+        </span>
+        <div>{detail}</div>
       </div>
     );
   },

@@ -8,6 +8,16 @@ module.exports = React.createClass({
   getInitialState: function () {
     return {todos: TodoStore.all()};
   },
+  todosChanged: function () {
+    this.setState({todos: TodoStore.all()});
+  },
+  componentDidMount: function () {
+    TodoStore.addChangeHandler(this.todosChanged);
+    TodoStore.fetch();
+  },
+  componentWillUnmount: function () {
+    TodoStore.removeChangeHandler(this.todosChanged);
+  },
   render: function () {
     var todos = this.state.todos;
     var items = Object.keys(todos).map(function (id) {
@@ -20,15 +30,5 @@ module.exports = React.createClass({
         <TodoForm />
       </div>
     );
-  },
-  todosChanged: function () {
-    this.setState({todos: TodoStore.all()});
-  },
-  componentDidMount: function () {
-    TodoStore.addChangeHandler(this.todosChanged);
-    TodoStore.fetch();
-  },
-  componentWillUnmount: function () {
-    TodoStore.removeChangeHandler(this.todosChanged);
   },
 });

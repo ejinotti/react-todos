@@ -1,6 +1,7 @@
 var React = require('react');
 
 var TodoStore = require('./stores/todo_store');
+var StepList = require('./step_list');
 
 module.exports = React.createClass({
   handleDestroy: function () {
@@ -10,7 +11,8 @@ module.exports = React.createClass({
     return (
       <div>
         <div>{this.props.todo.body}</div>
-        <button onClick={this.handleDestroy}>Delete</button>
+        <StepList todoId={this.props.todo.id} />
+        <button onClick={this.handleDestroy}>Delete Todo</button>
       </div>
     );
   }
