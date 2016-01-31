@@ -3,7 +3,7 @@ var React = require('react');
 var TodoList = require('./todo_list');
 var TodoForm = require('./todo_form');
 
-module.exports = React.createClass({
+var SidebarView = React.createClass({
   render: function () {
     return (
       <div>
@@ -13,3 +13,5 @@ module.exports = React.createClass({
     );
   },
 });
+
+module.exports = SidebarView;

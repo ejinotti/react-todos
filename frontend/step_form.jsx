@@ -2,7 +2,7 @@ var React = require('react');
 
 var StepStore = require('./stores/step_store');
 
-module.exports = React.createClass({
+var StepForm = React.createClass({
   getInitialState: function () {
     return {body: ''};
   },
@@ -27,3 +27,5 @@ module.exports = React.createClass({
     );
   },
 });
+
+module.exports = StepForm;

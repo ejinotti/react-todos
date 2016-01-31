@@ -3,7 +3,7 @@ var React = require('react');
 var StepStore = require('./stores/step_store');
 var DoneButton = require('./done_button');
 
-module.exports = React.createClass({
+var StepListItem = React.createClass({
   handleDestroy: function () {
     StepStore.destroy(this.props.step.todo_id, this.props.step.id);
   },
@@ -17,3 +17,5 @@ module.exports = React.createClass({
     );
   },
 });
+
+module.exports = StepListItem;

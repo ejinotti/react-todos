@@ -2,7 +2,7 @@ var React = require('react');
 
 var TodoListItem = require('./todo_list_item');
 
-module.exports = React.createClass({
+var TodoList = React.createClass({
   render: function () {
     var todos = this.props.todos;
     var self = this;
@@ -14,3 +14,5 @@ module.exports = React.createClass({
     return<div>{items}</div>;
   },
 });
+
+module.exports = TodoList;

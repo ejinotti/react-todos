@@ -1,9 +1,8 @@
 var React = require('react');
 
 var DoneButton = require('./done_button');
-var TodoDetailView = require('./todo_detail_view');
 
-module.exports = React.createClass({
+var TodoListItem = React.createClass({
   render: function () {
     return (
       <div>
@@ -15,3 +14,5 @@ module.exports = React.createClass({
     );
   },
 });
+
+module.exports = TodoListItem;

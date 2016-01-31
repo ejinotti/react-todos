@@ -4,7 +4,7 @@ var StepStore = require('./stores/step_store');
 var StepListItem = require('./step_list_item');
 var StepForm = require('./step_form');
 
-module.exports = React.createClass({
+var StepList = React.createClass({
   getInitialState: function () {
     return {steps: StepStore.all(this.props.todoId)};
   },
@@ -33,3 +33,5 @@ module.exports = React.createClass({
     );
   },
 });
+
+module.exports = StepList;

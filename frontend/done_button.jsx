@@ -3,7 +3,7 @@ var React = require('react');
 var TodoStore = require('./stores/todo_store');
 var StepStore = require('./stores/step_store');
 
-module.exports = React.createClass({
+var DoneButton = React.createClass({
   handleDone: function () {
     if (this.props.item.todo_id) {
       StepStore.toggleDone(this.props.item.todo_id, this.props.item.id);
@@ -19,3 +19,5 @@ module.exports = React.createClass({
     );
   }
 });
+
+module.exports = DoneButton;

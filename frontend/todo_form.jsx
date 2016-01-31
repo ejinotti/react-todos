@@ -2,7 +2,7 @@ var React = require('react');
 
 var TodoStore = require('./stores/todo_store');
 
-module.exports = React.createClass({
+var TodoForm = React.createClass({
   getInitialState: function () {
     return {title: '', body: ''};
   },
@@ -33,3 +33,5 @@ module.exports = React.createClass({
     );
   },
 });
+
+module.exports = TodoForm;

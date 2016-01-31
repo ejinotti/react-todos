@@ -3,7 +3,7 @@ var React = require('react');
 var TodoStore = require('./stores/todo_store');
 var StepList = require('./step_list');
 
-module.exports = React.createClass({
+var MainView = React.createClass({
   handleDestroy: function () {
     TodoStore.destroy(this.props.todo.id);
   },
@@ -22,3 +22,5 @@ module.exports = React.createClass({
     );
   },
 });
+
+module.exports = MainView;
