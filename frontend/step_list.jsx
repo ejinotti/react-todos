@@ -12,6 +12,7 @@ module.exports = React.createClass({
     this.setState({steps: StepStore.all(this.props.todoId)});
   },
   componentDidMount: function () {
+    console.log('StepList mounted for todo #' + this.props.todoId);
     StepStore.addChangeHandler(this.props.todoId, this.stepsChanged);
     StepStore.fetch(this.props.todoId);
   },

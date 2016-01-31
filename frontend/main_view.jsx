@@ -8,12 +8,17 @@ module.exports = React.createClass({
     TodoStore.destroy(this.props.todo.id);
   },
   render: function () {
+    if (!this.props.todo) {
+      return <div></div>;
+    }
+    console.log('render() MainView for todo #' + this.props.todo.id);
     return (
       <div>
+        <div>{this.props.todo.title}</div>
         <div>{this.props.todo.body}</div>
         <StepList todoId={this.props.todo.id} />
         <button onClick={this.handleDestroy}>Delete Todo</button>
       </div>
     );
-  }
+  },
 });
