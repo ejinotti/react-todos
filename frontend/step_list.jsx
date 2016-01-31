@@ -11,13 +11,20 @@ var StepList = React.createClass({
   stepsChanged: function () {
     this.setState({steps: StepStore.all(this.props.todoId)});
   },
-  componentDidMount: function () {
-    console.log('StepList mounted for todo #' + this.props.todoId);
-    StepStore.addChangeHandler(this.props.todoId, this.stepsChanged);
-    StepStore.fetch(this.props.todoId);
+  addHandler: function (todoId) {
+    StepStore.addChangeHandler(todoId, this.stepsChanged);
+    StepStore.fetch(todoId);
   },
-  componentWillUnmount: function () {
+  removeHandler: function () {
     StepStore.removeChangeHandler(this.props.todoId, this.stepsChanged);
+  },
+  componentDidMount: function () {
+    this.addHandler(this.props.todoId);
+  },
+  componentWillUnmount: this.removeHandler,
+  componentWillReceiveProps: function (nextProps) {
+    this.removeHandler();
+    this.addHandler(nextProps.todoId);
   },
   render: function () {
     var steps = this.state.steps;

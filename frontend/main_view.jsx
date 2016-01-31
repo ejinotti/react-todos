@@ -11,7 +11,6 @@ var MainView = React.createClass({
     if (!this.props.todo) {
       return <div></div>;
     }
-    console.log('render() MainView for todo #' + this.props.todo.id);
     return (
       <div>
         <div>{this.props.todo.title}</div>
